@@ -1,0 +1,25 @@
+{
+  "name": "testeapi",
+  "version": "1.0.0",
+  "description": "teste",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "teste"
+  ],
+  "author": "GUilherme",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^3.15.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16",
+    "prisma": "^3.15.1"
+  }
+}

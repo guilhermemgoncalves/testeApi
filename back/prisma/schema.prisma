@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model compra {
+  idcompra   Int      @id @default(autoincrement())
+  idusuario  Int
+  idproduto  Int?
+  datacompra DateTime @db.DateTime(0)@default(now())
+  produto    produto? @relation(fields: [idproduto], references: [idproduto], onDelete: NoAction, onUpdate: NoAction, map: "idproduto")
+  usuario    usuario  @relation(fields: [idusuario], references: [idusuario], onDelete: NoAction, onUpdate: NoAction, map: "idusuario")
+
+  @@index([idproduto], map: "idproduto_idx")
+  @@index([idusuario], map: "idusuario_idx")
+}
+
+model produto {
+  idproduto   Int      @id @default(autoincrement())
+  nomeproduto String   @db.VarChar(60)
+  preco       Float?
+  compra      compra[]
+}
+
+model usuario {
+  idusuario Int      @id @default(autoincrement())
+  nome      String   @db.VarChar(45)
+  compra    compra[]
+}
